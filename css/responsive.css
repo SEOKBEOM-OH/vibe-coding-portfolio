@@ -1,0 +1,175 @@
+@media (max-width: 992px) {
+  .hero__title {
+    font-size: 40px;
+  }
+
+  .hero__image-wrapper {
+    width: 320px;
+    height: 380px;
+  }
+
+  .hero__image-bg {
+    width: 280px;
+    height: 340px;
+  }
+
+  .hero__image-photo {
+    width: 300px;
+    height: 360px;
+  }
+
+  .services .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about .container {
+    flex-direction: column;
+  }
+
+  .about__services {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__menu {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .hero .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero__image {
+    order: -1;
+  }
+
+  .hero__content {
+    max-width: 100%;
+  }
+
+  .hero__label {
+    justify-content: center;
+  }
+
+  .hero__title {
+    font-size: 34px;
+  }
+
+  .hero__buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    padding: 16px 36px;
+    font-size: 16px;
+    min-height: 52px;
+  }
+
+  .hero__dots {
+    justify-content: center;
+  }
+
+  .hero__decoration {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .hero__image {
+    justify-content: center;
+  }
+
+  .hero__image-wrapper {
+    width: 280px;
+    height: 340px;
+  }
+
+  .hero__image-bg {
+    width: 240px;
+    height: 300px;
+  }
+
+  .hero__image-photo {
+    width: 260px;
+    height: 320px;
+  }
+
+  .about__title {
+    font-size: 30px;
+  }
+
+  .about__buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about__buttons .btn-primary,
+  .about__buttons .btn-outline {
+    padding: 16px 36px;
+    font-size: 16px;
+    min-height: 52px;
+  }
+
+  .about__content {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 28px;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 18px 36px;
+    font-size: 17px;
+    min-height: 56px;
+  }
+
+  .services .container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 28px 20px;
+  }
+
+  .about__services {
+    grid-template-columns: 1fr;
+  }
+
+  .about__title {
+    font-size: 26px;
+  }
+
+  .about__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .about__buttons .btn-primary,
+  .about__buttons .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 18px 36px;
+    font-size: 17px;
+    min-height: 56px;
+  }
+}

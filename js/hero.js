@@ -5,7 +5,7 @@ function renderHero() {
       <div class="container">
         <div class="hero__content">
           <div class="hero__label">Product Designer</div>
-          <h1 class="hero__title">Markus Räikkönen</h1>
+          <h1 class="hero__title">SEOKBEOM_OH</h1>
           <p class="hero__subtitle">I am a freelance product designer. Let's work together.</p>
           <div class="hero__buttons">
             <a href="#contact" class="btn-primary">Contact Me</a>

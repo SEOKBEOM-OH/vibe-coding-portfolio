@@ -26,26 +26,28 @@ HTML, CSS, JavaScript로 만든 프로덕트 디자이너 포트폴리오 웹사
 
 ```
 .
-├── index.html
-├── css/
-│   ├── reset.css
-│   ├── variables.css
-│   ├── layout.css
-│   ├── navbar.css
-│   ├── hero.css
-│   ├── about.css
-│   ├── portfolio.css
-│   ├── skills.css
-│   ├── services.css
-│   └── responsive.css
-└── js/
-    ├── navbar.js
-    ├── hero.js
-    ├── about.js
-    ├── portfolio.js
-    ├── skills.js
-    ├── services.js
-    └── main.js
+├── README.md
+└── 1-html-css-js-demo/
+    ├── index.html
+    ├── css/
+    │   ├── reset.css
+    │   ├── variables.css
+    │   ├── layout.css
+    │   ├── navbar.css
+    │   ├── hero.css
+    │   ├── about.css
+    │   ├── portfolio.css
+    │   ├── skills.css
+    │   ├── services.css
+    │   └── responsive.css
+    └── js/
+        ├── navbar.js
+        ├── hero.js
+        ├── about.js
+        ├── portfolio.js
+        ├── skills.js
+        ├── services.js
+        └── main.js
 ```
 
 각 섹션은 JS에서 DOM으로 렌더링하고, 스타일은 섹션별 CSS 파일로 분리되어 있습니다.
@@ -58,7 +60,7 @@ HTML, CSS, JavaScript로 만든 프로덕트 디자이너 포트폴리오 웹사
 
 ```bash
 git clone https://github.com/SEOKBEOM-OH/vibe-coding-portfolio.git
-cd vibe-coding-portfolio
+cd vibe-coding-portfolio/1-html-css-js-demo
 ```
 
 2. `index.html`을 브라우저에서 엽니다.  

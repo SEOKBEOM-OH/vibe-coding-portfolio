@@ -1,0 +1,133 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--color-bg-elevated);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  transform: translateY(20px) scale(0.98);
+  transition: transform var(--transition);
+}
+
+.modal.is-open .modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--color-surface);
+}
+
+.modal-close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.modal-banner {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--color-surface);
+}
+
+.modal-body {
+  padding: 1.5rem 1.75rem 2rem;
+}
+
+.modal-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.modal-rating {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.modal-overview {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-dialog {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .modal-close {
+    width: 48px;
+    height: 48px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .modal-body {
+    padding: 1.25rem 1.15rem 2rem;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+    padding-right: 2.5rem;
+  }
+}

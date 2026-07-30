@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>홈 | NETFLIX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/components/navbar.css" />
+    <link rel="stylesheet" href="css/components/hero.css" />
+    <link rel="stylesheet" href="css/components/movie-card.css" />
+    <link rel="stylesheet" href="css/components/modal.css" />
+    <link rel="stylesheet" href="css/home.css" />
+  </head>
+  <body>
+    <div class="home-page">
+      <div id="navbar-root"></div>
+
+      <main class="home-main">
+        <div id="hero-root"></div>
+
+        <div class="section-now-playing">
+          <div id="status-root"></div>
+          <div id="movie-row-root"></div>
+        </div>
+      </main>
+
+      <footer class="home-footer">
+        <p>
+          영화 데이터 제공:
+          <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer"
+            >TMDB</a
+          >
+          · 학습용 Netflix 스타일 클론
+        </p>
+      </footer>
+    </div>
+
+    <div id="modal-root"></div>
+
+    <script src="js/secrets.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/hero.js"></script>
+    <script src="js/components/movie-card.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>

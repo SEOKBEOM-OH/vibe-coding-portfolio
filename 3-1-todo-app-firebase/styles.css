@@ -1,0 +1,407 @@
+:root {
+  --ink: #1a2b28;
+  --ink-muted: #5a706b;
+  --surface: rgba(255, 252, 247, 0.88);
+  --surface-solid: #fffaf3;
+  --line: rgba(26, 43, 40, 0.12);
+  --accent: #0f766e;
+  --accent-hover: #0d5f59;
+  --danger: #b42318;
+  --danger-hover: #912018;
+  --done: #6b7f7a;
+  --shadow: 0 18px 40px rgba(26, 43, 40, 0.12);
+  --radius: 14px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Outfit", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: #c8ddd6;
+  line-height: 1.5;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, #9ec9bc 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, #f0d9b5 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 70% 90%, #7eafa3 0%, transparent 55%),
+    linear-gradient(165deg, #d7ebe4 0%, #c5d9d0 45%, #b8cfc6 100%);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app {
+  width: min(560px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3.5rem 0 4rem;
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.header {
+  margin-bottom: 1.75rem;
+  animation: rise 0.55s ease both;
+}
+
+.brand {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.add-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.7rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  animation: rise 0.55s ease 0.08s both;
+}
+
+.add-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.add-form input::placeholder {
+  color: var(--ink-muted);
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-muted);
+  padding: 0.4rem 0.55rem;
+}
+
+.btn-ghost:hover {
+  color: var(--ink);
+  background: rgba(26, 43, 40, 0.06);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  padding: 0.4rem 0.55rem;
+}
+
+.btn-danger:hover {
+  background: rgba(180, 35, 24, 0.08);
+  color: var(--danger-hover);
+}
+
+.empty {
+  margin: 0;
+  padding: 1.5rem 0.25rem;
+  color: var(--ink-muted);
+  text-align: center;
+  animation: rise 0.4s ease both;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 20px rgba(26, 43, 40, 0.06);
+  backdrop-filter: blur(8px);
+  animation: rise 0.35s ease both;
+}
+
+.todo-item.is-editing {
+  grid-template-columns: 1fr auto;
+}
+
+.todo-check {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.todo-text {
+  margin: 0;
+  word-break: break-word;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.todo-item.is-done .todo-text {
+  color: var(--done);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.edit-form {
+  display: contents;
+}
+
+.edit-input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--surface-solid);
+  outline: none;
+}
+
+.edit-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.15rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet and below */
+@media (max-width: 640px) {
+  .app {
+    width: min(560px, calc(100% - 1.5rem));
+    padding: 2.5rem 0 3.5rem;
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  .header {
+    margin-bottom: 1.5rem;
+  }
+
+  .add-form {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  .add-form input {
+    padding: 0.85rem 0.9rem;
+    font-size: 1.05rem;
+  }
+
+  .btn {
+    min-height: 48px;
+    padding: 0.85rem 1.15rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+
+  .btn-ghost,
+  .btn-danger {
+    min-width: 48px;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .todo-item {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.65rem 0.85rem;
+    padding: 1rem;
+  }
+
+  .todo-check {
+    width: 1.45rem;
+    height: 1.45rem;
+    margin: 0.15rem 0;
+  }
+
+  .todo-text {
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  .todo-actions {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .todo-actions .btn {
+    width: 100%;
+  }
+
+  .todo-item.is-editing {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .edit-input {
+    padding: 0.85rem 0.9rem;
+    font-size: 1.05rem;
+    min-height: 48px;
+  }
+
+  .edit-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .edit-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Narrow phones */
+@media (max-width: 380px) {
+  .app {
+    width: calc(100% - 1rem);
+    padding-top: 2rem;
+  }
+
+  .brand {
+    font-size: clamp(2rem, 10vw, 2.4rem);
+  }
+
+  .title {
+    font-size: 0.98rem;
+  }
+}
+
+/* Prefer larger tap targets when primary input is touch */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    background: inherit;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+  }
+
+  .btn-ghost:hover {
+    color: var(--ink-muted);
+    background: transparent;
+  }
+
+  .btn-danger:hover {
+    background: transparent;
+    color: var(--danger);
+  }
+
+  .btn:active.btn-primary {
+    background: var(--accent-hover);
+  }
+
+  .btn:active.btn-ghost {
+    color: var(--ink);
+    background: rgba(26, 43, 40, 0.06);
+  }
+
+  .btn:active.btn-danger {
+    background: rgba(180, 35, 24, 0.08);
+    color: var(--danger-hover);
+  }
+}

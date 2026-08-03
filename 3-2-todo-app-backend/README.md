@@ -5,10 +5,31 @@ Express + MongoDB(Mongoose) 기반 할일(Todo) REST API 서버입니다.
 
 ## Tech Stack
 
-- Node.js / Express
-- MongoDB + Mongoose
-- dotenv (환경변수)
-- cors (프론트 교차 출처 요청 허용)
+한 줄로 말하면, **Node.js + Express + Mongoose(MongoDB)** 백엔드입니다.
+
+### 언어 / 런타임
+
+| 항목 | 내용 |
+|------|------|
+| 언어 | **JavaScript** (CommonJS, .js) — Java 아님 |
+| 런타임 | **Node.js** |
+| 패키지 관리 | **npm** (package.json) |
+
+### 주요 라이브러리
+
+| 패키지 | 역할 |
+|--------|------|
+| **express** | HTTP 서버·라우팅 (/todos API) |
+| **mongoose** | MongoDB 연결·스키마·CRUD |
+| **dotenv** | .env 환경변수 로드 (MONGO_URI, PORT) |
+| **cors** | 프론트(다른 포트)에서의 API 요청 허용 |
+
+### 데이터 / 인프라
+
+| 항목 | 내용 |
+|------|------|
+| DB | **MongoDB** (로컬 또는 Atlas) |
+| API 스타일 | **REST** (JSON) |
 
 ## 실행 구조 (URL 접속 시)
 

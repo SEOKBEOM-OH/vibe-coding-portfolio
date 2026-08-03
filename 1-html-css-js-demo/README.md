@@ -64,45 +64,31 @@ HTML, CSS, Vanilla JavaScript로 구현한 프로덕트 디자이너 포트폴�
 
 ## Call Flow
 
-URL로 접속하면 서버/빌드 없이 브라우저가 `index.html`을 로드합니다.  
-`body`에는 빈 마운트 포인트(`#navbar`, `#hero`, `#about`, `#portfolio`, `#skills`)만 있고, 각 섹션 JS가 DOM(브라우저가 만든 페이지 구조)에 마크업을 채운 뒤 `main.js`가 인터랙션을 연결합니다.
+URL로 열면 브라우저가 `index.html`만 읽고, CSS로 꾸민 뒤 JS가 빈 자리를 채워 페이지를 완성합니다.
 
 ```mermaid
-flowchart TD
-  A["URL 접속<br/>예: /index.html"] --> B["브라우저가 index.html 요청·수신"]
-  B --> C["HEAD: CSS + CDN 로드"]
-  C --> C1["reset → variables → layout"]
-  C1 --> C2["navbar / hero / about / portfolio / skills"]
-  C2 --> C3["responsive.css"]
-  C3 --> C4["Google Fonts · Font Awesome"]
-  C --> D["BODY: 빈 마운트 포인트만 존재"]
-  D --> D1["#navbar #hero #about #portfolio #skills"]
-  D --> E["script 순서대로 실행"]
-  E --> E1["navbar.js → renderNavbar()"]
-  E1 --> E2["hero.js → renderHero()"]
-  E2 --> E3["about.js → renderAbout()"]
-  E3 --> E4["portfolio.js → renderPortfolio()"]
-  E4 --> E5["skills.js → renderSkills()"]
-  E5 --> E6["main.js → 호버·스크롤 애니메이션"]
-  E6 --> F["완성된 원페이지 포트폴리오 표시"]
+flowchart LR
+  A[URL 접속] --> B[index.html]
+  B --> C[CSS 적용]
+  B --> D[JS 실행]
+  D --> E[render로 섹션 그리기]
+  E --> F[main.js로 동작 연결]
+  F --> G[화면 완성]
 ```
-
-한 줄로 보면 다음과 같습니다.
 
 ```
 URL → index.html
-        ├─ CSS (시각)
-        └─ JS 체인
-             renderNavbar → renderHero → renderAbout
-             → renderPortfolio → renderSkills → main(인터랙션)
+        ├─ CSS : 스타일 입히기
+        └─ JS
+             1) renderNavbar / Hero / About / Portfolio / Skills
+                → 빈 div에 각 섹션 내용 넣기
+             2) main.js
+                → 호버, 스크롤 애니메이션 연결
 ```
 
-| 단계 | 의미 |
-|------|------|
-| `renderXxx()` | 해당 섹션 HTML을 만들어 빈 `div`에 넣어 화면에 **그려 넣음** |
-| `main.js` (인터랙션) | 이미 그려진 요소에 호버·스크롤 등장 등 **동작**을 연결 |
-
-`main.js`가 마지막인 이유: 앞 스크립트가 DOM을 만든 뒤에야 `.service-card`, `.hero__content` 등을 찾을 수 있기 때문입니다.
+- `renderXxx()` = 화면에 **그리기**
+- `main.js` = 그린 뒤에 **움직이게 하기**
+- DOM = 브라우저가 기억하는 페이지 구조 (빈 상자에 내용을 넣는 대상)
 
 ## Sections
 

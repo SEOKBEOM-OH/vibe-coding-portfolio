@@ -8,6 +8,7 @@
 |----------|------|
 | [1-html-css-js-demo](./1-html-css-js-demo) | HTML / CSS / JS 기반 프로덕트 디자이너 포트폴리오 (eleFolio) |
 | [2-netflix-playing-list](./2-netflix-playing-list) | TMDB API 기반 Netflix 스타일 현재 상영작 목록 |
+| [3-1-todo-app-firebase](./3-1-todo-app-firebase) | 바닐라 JS 할일 앱 (Firebase / Mongo 자동 선택) |
 | [3-2-todo-app-backend](./3-2-todo-app-backend) | Express + MongoDB 할일(Todo) REST API 백엔드 |
 
 각 프로젝트의 상세 설명은 해당 디렉토리의 `README.md`를 참고하세요.

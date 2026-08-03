@@ -2,23 +2,29 @@ import { useEffect, useState } from 'react'
 import { createTodo, deleteTodo, getTodos, updateTodo } from './api/todos'
 import './App.css'
 
+/**
+ * 할일 화면 컴포넌트
+ * UI 이벤트 → api/todos.js 호출 → 응답으로 state 갱신 → 화면 다시 그림
+ */
 function App() {
-  const [todos, setTodos] = useState([])
-  const [title, setTitle] = useState('')
-  const [loading, setLoading] = useState(true)
-  const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState('')
-  const [editingId, setEditingId] = useState(null)
-  const [editingTitle, setEditingTitle] = useState('')
+  // --- 화면 상태 ---
+  const [todos, setTodos] = useState([]) // 할일 목록
+  const [title, setTitle] = useState('') // 새 할일 입력값
+  const [loading, setLoading] = useState(true) // 최초 로딩
+  const [submitting, setSubmitting] = useState(false) // 추가 요청 중
+  const [error, setError] = useState('') // 에러 메시지
+  const [editingId, setEditingId] = useState(null) // 수정 중인 항목 id
+  const [editingTitle, setEditingTitle] = useState('') // 수정 입력값
 
+  // 마운트 시 1회: 백엔드에서 목록 불러오기
   useEffect(() => {
-    let cancelled = false
+    let cancelled = false // 언마운트 후 setState 방지
 
     async function loadTodos() {
       try {
         setLoading(true)
         setError('')
-        const data = await getTodos()
+        const data = await getTodos() // GET /todos
         if (!cancelled) {
           setTodos(data)
         }
@@ -40,6 +46,7 @@ function App() {
     }
   }, [])
 
+  // 추가: POST → 목록 맨 앞에 삽입
   async function handleAdd(event) {
     event.preventDefault()
     const nextTitle = title.trim()
@@ -58,6 +65,7 @@ function App() {
     }
   }
 
+  // 완료 토글: PUT completed
   async function handleToggle(todo) {
     try {
       setError('')
@@ -72,6 +80,7 @@ function App() {
     }
   }
 
+  // 수정 모드 진입 / 취소 (API 호출 없음)
   function startEdit(todo) {
     setEditingId(todo._id)
     setEditingTitle(todo.title)
@@ -82,6 +91,7 @@ function App() {
     setEditingTitle('')
   }
 
+  // 제목 저장: PUT title
   async function handleSaveEdit(event) {
     event.preventDefault()
     const nextTitle = editingTitle.trim()
@@ -99,6 +109,7 @@ function App() {
     }
   }
 
+  // 삭제: DELETE → 목록에서 제거
   async function handleDelete(id) {
     try {
       setError('')
@@ -127,6 +138,7 @@ function App() {
           </p>
         </header>
 
+        {/* 새 할일 입력 → handleAdd → createTodo */}
         <form className="composer" onSubmit={handleAdd}>
           <label className="sr-only" htmlFor="todo-title">
             새 할일
@@ -156,6 +168,7 @@ function App() {
           <p className="status status--empty">아직 할일이 없습니다.</p>
         )}
 
+        {/* 목록: 수정 모드면 입력폼, 아니면 체크/수정/삭제 */}
         {!loading && todos.length > 0 && (
           <>
             <p className="panel__meta">남은 일 {remaining}개</p>

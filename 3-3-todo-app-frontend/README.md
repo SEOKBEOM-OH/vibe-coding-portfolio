@@ -3,6 +3,45 @@
 React + Vite로 만든 할일(Todo) 프론트엔드입니다.  
 화면에서 할일을 추가·수정·완료·삭제하고, API를 통해 백엔드와 통신합니다.
 
+## 기술 스택
+
+### 언어 / 마크업
+
+| 구분 | 사용 |
+|------|------|
+| JavaScript (JSX) | 앱 로직 (`App.jsx`, `todos.js` 등) |
+| HTML | 진입점 (`index.html`) |
+| CSS | 스타일 (`App.css`, `index.css`) |
+
+TypeScript는 사용하지 않습니다. (`@types/react` 등은 에디터 타입 힌트용)
+
+### 프레임워크 / 런타임
+
+| 이름 | 역할 |
+|------|------|
+| React 19 | UI 컴포넌트, 상태 (`useState` / `useEffect`) |
+| Vite 8 | 개발 서버, 번들/빌드, `.env` 주입 |
+| ES Modules | `import` / `export` 모듈 구조 |
+
+### 주요 라이브러리
+
+| 패키지 | 구분 | 역할 |
+|--------|------|------|
+| `react` | 의존성 | UI |
+| `react-dom` | 의존성 | 브라우저 렌더 (`createRoot`) |
+| `@vitejs/plugin-react` | 개발 | Vite에서 JSX/React 처리 |
+| `oxlint` | 개발 | 린트 (`npm run lint`) |
+| `@types/react`, `@types/react-dom` | 개발 | 에디터 타입 힌트 |
+
+### 웹 API
+
+| API | 역할 |
+|-----|------|
+| `fetch` | 백엔드 Todo API 호출 (`src/api/todos.js`) |
+| `import.meta.env.VITE_API_BASE_URL` | Vite 환경변수로 API 주소 주입 |
+
+라우터(React Router), 전역 상태관리(Redux 등), UI 키트, HTTP 클라이언트(axios)는 사용하지 않습니다.
+
 ## 주요 파일
 
 | 파일 | 역할 |

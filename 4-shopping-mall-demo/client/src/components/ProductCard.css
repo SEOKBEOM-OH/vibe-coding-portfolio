@@ -1,0 +1,130 @@
+.product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--cos-bg);
+  opacity: 0;
+  animation: product-in 0.55s ease forwards;
+}
+
+.product__media-wrap {
+  position: relative;
+}
+
+.product__media-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product__link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cos-surface);
+}
+
+.product__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+
+.product:hover .product__image {
+  transform: scale(1.035);
+}
+
+.product__wish {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--cos-text);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.product:hover .product__wish,
+.product__wish.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product__wish:hover {
+  background: var(--cos-bg);
+}
+
+.product__wish.is-active {
+  color: var(--cos-text);
+}
+
+.product__info {
+  padding: 14px 10px 22px;
+}
+
+.product__name {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: var(--cos-text);
+}
+
+.product__price {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  color: var(--cos-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.product__swatches {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.product__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+@keyframes product-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .product__wish {
+    opacity: 1;
+    transform: none;
+  }
+}

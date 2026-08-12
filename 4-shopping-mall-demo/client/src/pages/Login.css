@@ -1,0 +1,174 @@
+/**
+ * Login 페이지 전용 스타일
+ * 카드/필드/에러/제출 등 공통은 styles/form.css
+ */
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 20px 56px;
+}
+
+.login__checking {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--cos-muted);
+}
+
+.login__brand {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cos-text);
+}
+
+.login__input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login__icon {
+  position: absolute;
+  left: 14px;
+  color: var(--cos-placeholder);
+  display: inline-flex;
+  pointer-events: none;
+}
+
+.login__eye {
+  position: absolute;
+  right: 10px;
+}
+
+.login__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 18px;
+  font-size: 0.875rem;
+}
+
+.login__remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cos-muted);
+  cursor: pointer;
+}
+
+.login__remember input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--cos-primary);
+}
+
+.login__forgot {
+  border: none;
+  background: none;
+  color: var(--cos-muted-soft);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.login__forgot:hover {
+  color: var(--cos-text);
+  text-decoration: underline;
+}
+
+.login__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--cos-placeholder);
+  font-size: 0.85rem;
+}
+
+.login__divider::before,
+.login__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cos-border);
+}
+
+.login__social {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login__social-btn {
+  width: 100%;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--cos-border-strong);
+  border-radius: var(--cos-radius-md);
+  background: var(--cos-bg);
+  color: var(--cos-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.login__social-btn:hover {
+  background: #fafafa;
+}
+
+.login__social-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--cos-shadow-soft);
+}
+
+.login__social-icon--google {
+  background: var(--cos-bg);
+  border: 1px solid var(--cos-border);
+}
+
+/* FaceBook / Apple — 미사용
+.login__social-icon--facebook {
+  background: #1877f2;
+}
+
+.login__social-icon--apple {
+  background: var(--cos-bg);
+  border: 1px solid var(--cos-border);
+}
+*/
+
+.login__social-icon--kakao {
+  background: #fee500;
+}
+
+.login__social-icon--naver {
+  background: #03c75a;
+}
+
+@media (max-width: 480px) {
+  .login {
+    padding: 28px 14px 40px;
+    gap: 20px;
+  }
+
+  .login__brand {
+    font-size: 1.5rem;
+  }
+}

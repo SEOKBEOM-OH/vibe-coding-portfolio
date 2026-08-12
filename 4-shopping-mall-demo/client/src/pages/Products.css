@@ -1,0 +1,37 @@
+.shop__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--cos-max-content);
+  margin: 0 auto 22px;
+  padding: 0 8px;
+}
+
+.shop__heading h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--cos-text);
+}
+
+.shop__heading p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--cos-muted);
+  letter-spacing: 0.04em;
+}
+
+.shop__status {
+  max-width: var(--cos-max-content);
+  margin: 24px auto;
+  padding: 0 8px;
+  text-align: center;
+  color: var(--cos-muted);
+  font-size: 0.95rem;
+}
+
+.shop__status--error {
+  color: var(--cos-danger-text);
+}

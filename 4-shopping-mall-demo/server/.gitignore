@@ -1,0 +1,18 @@
+# Dependencies & build
+node_modules/
+dist/
+coverage/
+
+# Secrets (use .env.example as template)
+.env
+.env.*
+!.env.example
+
+# Logs & OS
+*.log
+npm-debug.log*
+.DS_Store
+
+# Editor
+.idea/
+.vscode/

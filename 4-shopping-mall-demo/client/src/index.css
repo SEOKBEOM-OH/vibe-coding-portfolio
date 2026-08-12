@@ -1,0 +1,79 @@
+/**
+ * 전역 스타일 + COS 디자인 토큰
+ * 페이지/컴포넌트 CSS는 가능하면 여기 변수만 참조한다.
+ */
+:root {
+  /* 브랜드 / 표면 */
+  --cos-bg: #ffffff;
+  --cos-bg-muted: #f3f3f3;
+  --cos-text: #111111;
+  --cos-text-secondary: #333333;
+  --cos-muted: #777777;
+  --cos-muted-soft: #888888;
+  --cos-placeholder: #999999;
+  --cos-surface: #eceae6;
+  --cos-border: #e5e5e5;
+  --cos-border-strong: #dddddd;
+  --cos-footer: #111111;
+  --cos-footer-muted: #a8a8a8;
+  --cos-footer-line: #2a2a2a;
+
+  /* 인터랙션 */
+  --cos-primary: #111111;
+  --cos-primary-hover: #333333;
+  --cos-danger-bg: #fdecea;
+  --cos-danger-text: #c62828;
+
+  /* 형태 */
+  --cos-radius-sm: 4px;
+  --cos-radius-md: 10px;
+  --cos-radius-lg: 16px;
+  --cos-shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
+  --cos-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  /* 타이포 / 레이아웃 */
+  --cos-font: 'Helvetica Neue', Helvetica, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --cos-max-content: 1600px;
+  --cos-form-max: 440px;
+  --cos-input-height: 48px;
+
+  font-family: var(--cos-font);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--cos-text);
+  background-color: var(--cos-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--cos-bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input {
+  font-family: inherit;
+}

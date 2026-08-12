@@ -1,0 +1,83 @@
+﻿/**
+ * Register 페이지 전용 스타일
+ * 카드/필드/에러/제출 등 공통은 styles/form.css
+ */
+
+.register {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px 64px;
+}
+
+.register__password {
+  position: relative;
+}
+
+.register__eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px;
+}
+
+.register__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--cos-placeholder);
+}
+
+.register__agreements {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 20px;
+}
+
+.register__check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--cos-text-secondary);
+  cursor: pointer;
+}
+
+.register__check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--cos-primary);
+  cursor: pointer;
+}
+
+.register__check--row {
+  justify-content: space-between;
+}
+
+.register__check-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.register__view {
+  border: none;
+  background: none;
+  color: var(--cos-muted-soft);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.register__view:hover {
+  color: var(--cos-text-secondary);
+}
+
+@media (max-width: 480px) {
+  .register {
+    padding: 24px 12px 48px;
+  }
+}

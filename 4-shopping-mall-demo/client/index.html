@@ -1,13 +1,22 @@
 <!doctype html>
 <html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Mall</title>
+    <meta charset="UTF-8" /><!-- 한글 사이트 -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><!-- 브라우저 탭 아이콘 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- 모바일에서도 화면 비율이 맞게 -->
+    <title>COS</title><!-- 브라우저 탭 제목 -->
+
+    <!-- Cloudinary: 상품 이미지 업로드용 -->
+    <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript" async></script>
+
+    <!-- 포트원(아임포트) 결제 SDK -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <div id="root"></div><!-- React 앱이 여기에 그려짐 -->
+    <script type="module" src="/src/main.jsx"></script><!-- 앱 시작점 (main.jsx) -->
+    
   </body>
 </html>

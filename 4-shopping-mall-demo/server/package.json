@@ -1,0 +1,24 @@
+{
+  "name": "shopping-mall-server",
+  "version": "1.0.0",
+  "description": "Shopping mall demo API server with Express and MongoDB",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node scripts/dev.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "shopping-mall"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.9.3"
+  }
+}

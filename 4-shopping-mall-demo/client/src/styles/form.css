@@ -1,0 +1,190 @@
+/**
+ * Login / Register 공통 폼 스타일
+ * 페이지 전용(소셜 로그인, 약관 체크 등)은 각 페이지 CSS에 둔다.
+ */
+
+/* ----- 페이지 배경 ----- */
+:is(.login, .register) {
+  background: var(--cos-bg-muted);
+  color: var(--cos-text);
+}
+
+/* ----- 카드 ----- */
+:is(.login__card, .register__card) {
+  width: 100%;
+  max-width: var(--cos-form-max);
+  background: var(--cos-bg);
+  border: 1px solid var(--cos-border);
+  color: var(--cos-text);
+}
+
+.login__card {
+  border-radius: var(--cos-radius-lg);
+  padding: 36px 32px 28px;
+  box-shadow: var(--cos-shadow-card);
+}
+
+.register__card {
+  border-radius: var(--cos-radius-sm);
+  padding: 40px 36px 36px;
+}
+
+/* ----- 헤더 ----- */
+:is(.login__header, .register__header) {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+:is(.login__header h1, .register__header h1) {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--cos-text);
+}
+
+:is(.login__header p, .register__header p) {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cos-muted-soft);
+}
+
+/* ----- 필드 ----- */
+:is(.login__field, .register__field) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login__field {
+  margin-bottom: 16px;
+}
+
+.register__field {
+  margin-bottom: 18px;
+}
+
+:is(.login__field label, .register__field label) {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cos-text);
+}
+
+.register__field label {
+  font-size: 0.9rem;
+}
+
+/* 기본 텍스트 인풋 (회원가입 일반 입력 + 로그인 입력 공통 톤) */
+:is(.login__input input, .register__field input, .register__password input) {
+  width: 100%;
+  border: 1px solid var(--cos-border-strong);
+  font-size: 0.95rem;
+  color: var(--cos-text);
+  background: var(--cos-bg);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+:is(.login__input input:focus, .register__field input:focus, .register__password input:focus) {
+  border-color: var(--cos-placeholder);
+}
+
+.login__input input {
+  height: var(--cos-input-height);
+  padding: 0 44px;
+  border-radius: var(--cos-radius-md);
+}
+
+:is(.register__field input, .register__password input) {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--cos-radius-sm);
+}
+
+.register__password input {
+  padding-right: 44px;
+}
+
+/* ----- 비밀번호 보기 버튼 ----- */
+:is(.login__eye, .register__eye) {
+  border: none;
+  background: none;
+  color: var(--cos-muted-soft);
+  cursor: pointer;
+  display: inline-flex;
+  padding: 6px;
+}
+
+:is(.login__eye:hover, .register__eye:hover) {
+  color: var(--cos-text-secondary);
+}
+
+/* ----- 에러 ----- */
+:is(.login__error, .register__error) {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: var(--cos-danger-bg);
+  color: var(--cos-danger-text);
+  font-size: 0.875rem;
+  white-space: pre-line;
+}
+
+.login__error {
+  border-radius: 8px;
+}
+
+.register__error {
+  border-radius: var(--cos-radius-sm);
+}
+
+/* ----- 제출 버튼 (COS 검정 톤으로 통일) ----- */
+:is(.login__submit, .register__submit) {
+  width: 100%;
+  height: var(--cos-input-height);
+  border: none;
+  background: var(--cos-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.login__submit {
+  border-radius: var(--cos-radius-md);
+}
+
+.register__submit {
+  border-radius: var(--cos-radius-sm);
+}
+
+:is(.login__submit:hover:not(:disabled), .register__submit:hover:not(:disabled)) {
+  background: var(--cos-primary-hover);
+}
+
+:is(.login__submit:disabled, .register__submit:disabled) {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ----- 하단 링크 (회원가입/로그인 전환) ----- */
+:is(.login__register, .register__login) {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--cos-muted-soft);
+}
+
+.login__register {
+  margin-top: 22px;
+}
+
+:is(.login__register a, .register__login a) {
+  color: var(--cos-text);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  :is(.login__card, .register__card) {
+    padding: 28px 20px 22px;
+  }
+}

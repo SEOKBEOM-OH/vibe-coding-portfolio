@@ -1,0 +1,24 @@
+.auth-guard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 12px;
+  text-align: center;
+}
+
+.auth-guard--center h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--cos-text);
+}
+
+.auth-guard p {
+  margin: 12px 0 0;
+  color: var(--cos-muted);
+}
+
+.auth-guard a {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--cos-text);
+}

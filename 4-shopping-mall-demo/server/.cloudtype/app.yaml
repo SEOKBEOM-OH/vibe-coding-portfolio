@@ -1,0 +1,18 @@
+# Cloudtype 배포 설정 (시크릿은 대시보드 또는 app.deploy.yaml 로 등록)
+# 서브디렉토리: 4-shopping-mall-demo/server
+name: shopping-mall-api
+app: node@20
+options:
+  env:
+    - name: NODE_ENV
+      value: production
+    - name: CLIENT_URL
+      value: http://localhost:3000
+  install: npm ci --omit=dev
+  ports: 5000/http
+  start: npm start
+context:
+  git:
+    url: https://github.com/SEOKBEOM-OH/vibe-coding-portfolio.git
+    branch: main
+    path: 4-shopping-mall-demo/server

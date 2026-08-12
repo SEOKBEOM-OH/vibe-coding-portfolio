@@ -22,8 +22,9 @@ const startServer = async () => {
     const app = createApp();  // 미들웨어·라우트가 설정된 Express 인스턴스
 
     // 포트 열기 → 브라우저/클라이언트가 여기로 요청을 보냄
-    const server = app.listen(PORT, () => {
-      console.log(`Server 실행 중: http://localhost:${PORT}`);
+    // 0.0.0.0: Cloudtype 등 컨테이너에서 외부 요청 수신
+    const server = app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server 실행 중: http://0.0.0.0:${PORT}`);
     });
 
     server.on('error', (error) => {

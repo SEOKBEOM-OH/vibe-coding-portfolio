@@ -7,6 +7,10 @@ import { DEFAULT_USER_TYPE } from '../constants/userTypes';
 import { isValidEmail, isValidPassword, PASSWORD_HINT } from '../utils/validation';
 import './Register.css';
 
+/**
+ * 회원가입 페이지
+ * POST /api/users (user_type 기본 customer) → 성공 시 /login
+ */
 function Register() {
   const navigate = useNavigate();
 

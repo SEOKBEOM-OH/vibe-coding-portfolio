@@ -8,11 +8,13 @@ const orderRoutes = require('./routes/order');
 const errorHandler = require('./middleware/errorHandler');
 
 /**
- * Express 앱 조립소
- * 요청이 들어오면 위에서 아래로 미들웨어/라우트를 순서대로 통과한다.
+ * Express 앱 조립 (Spring의 DispatcherServlet + WebMvcConfig)
  *
- * 흐름 예: GET /api
- *   cors → json 파서 → /api 라우터 → (없으면) 404 → (에러면) errorHandler
+ * 요청은 위에서 아래로 통과:
+ *   cors → JSON 파서 → /api/* 라우터 → 404 → errorHandler
+ *
+ * routes/  = @RestController 의 URL 매핑
+ * middleware/ = Filter / Interceptor
  */
 const createApp = () => {
   const app = express();

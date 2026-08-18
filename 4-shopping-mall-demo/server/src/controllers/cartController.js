@@ -2,13 +2,8 @@ const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 
 /**
- * Cart 컨트롤러 — 내 장바구니 CRUD
- *
- * GET    /api/cart              → 장바구니 조회 (없으면 빈 카트 생성)
- * POST   /api/cart/items        → 상품 추가
- * PUT    /api/cart/items/:itemId → 수량 수정
- * DELETE /api/cart/items/:itemId → 항목 삭제
- * DELETE /api/cart              → 전체 비우기
+ * Cart 컨트롤러 — 로그인 유저 본인 장바구니만 (req.user._id)
+ * 없으면 빈 카트를 만들어 줌. 담을 때 상품 name/price/image 를 스냅샷으로 저장
  */
 
 const findOrCreateCart = async (userId) => {

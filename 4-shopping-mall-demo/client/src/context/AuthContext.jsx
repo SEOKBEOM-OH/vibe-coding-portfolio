@@ -4,27 +4,11 @@ import { clearAuth, getStoredUser, getToken, saveAuth } from '../utils/authStora
 import { USER_TYPES } from '../constants/userTypes';
 
 /**
- * ============================================================
- * AuthContext — 앱 전역 로그인 상태
- * ============================================================
+ * 전역 로그인 상태 (HttpSession 대신 JWT + React Context)
  *
- * [초급자가 기억할 한 줄]
- * "누가 로그인했는지"를 여러 페이지가 함께 쓰려면 Context로 올린다.
- *
- * [왜 Context인가?]
- * Home, Header, Admin, Login 이 모두 같은 유저 정보가 필요하다.
- * 페이지마다 /api/users/me 를 따로 부르면 중복·불일치가 생긴다.
- * → AuthProvider 한곳에서 관리하고, useAuth()로 꺼내 쓴다.
- *
- * [데이터 흐름]
- *  1) 앱 시작(AuthProvider 마운트)
- *     → storage에 token 있으면 GET /api/users/me 호출 → user state 설정
- *  2) 로그인 페이지에서 성공
- *     → login(token, user, remember) 호출 → storage 저장 + user state 갱신
- *  3) 로그아웃
- *     → logout() → storage 삭제 + user = null
- *  4) Header / Admin 등
- *     → const { user, isAdmin, logout } = useAuth()
+ * 앱 시작: 저장된 토큰이 있으면 GET /api/users/me 로 유저 복원
+ * 로그인: login() → storage + state
+ * 사용: const { user, isAdmin, logout } = useAuth()
  */
 
 // Context 그릇 (실제 값은 Provider가 채워 줌)

@@ -54,8 +54,10 @@ const PAYMENT_OPTIONS = [
 ];
 
 /**
- * 주문(체크아웃) 페이지
- * 왼쪽: 배송·결제 입력 / 오른쪽: 주문 요약 + 주문하기
+ * 체크아웃
+ * 1) 배송정보 입력
+ * 2) IMP.request_pay 로 포트원 결제창
+ * 3) 성공 시 createOrder() → 서버가 결제 재검증 후 주문 저장
  */
 function Checkout() {
   const navigate = useNavigate();
@@ -155,8 +157,8 @@ function Checkout() {
   };
 
   /**
-   * 2) 주문하기 → 재고 확인 후 IMP.request_pay
-   * 재고 0 / 부족이면 결제창을 열지 않음
+   * 주문하기 클릭
+   * 재고 확인 → 포트원 결제창 → 콜백에서 createOrder(impUid, merchantUid)
    */
   const handleSubmit = async (e) => {
     e.preventDefault();

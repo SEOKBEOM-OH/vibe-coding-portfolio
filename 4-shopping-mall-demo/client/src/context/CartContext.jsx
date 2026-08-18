@@ -17,9 +17,9 @@ import { useAuth } from './AuthContext';
 import { clearCartStorage } from '../utils/cartStorage';
 
 /**
- * CartContext — 로그인 유저별 서버 장바구니
- * - 비로그인: items 비움, itemCount = 0
- * - 로그인: GET /api/cart 로 계정별 수량 표시
+ * 전역 장바구니 (서버 Cart API와 동기화)
+ * 비로그인: 비움 / 로그인: GET /api/cart
+ * Header 장바구니 숫자(itemCount)도 여기서 나옴
  */
 const CartContext = createContext(null);
 

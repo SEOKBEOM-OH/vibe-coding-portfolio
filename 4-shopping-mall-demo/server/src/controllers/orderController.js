@@ -4,13 +4,14 @@ const Product = require('../models/Product');
 const { verifyPortOnePayment } = require('../utils/portone');
 
 /**
- * Order 컨트롤러 — CRUD
+ * Order 컨트롤러
  *
- * POST   /api/orders      → 장바구니 기반 주문 생성
- * GET    /api/orders      → 주문 목록 (본인 / admin 전체)
- * GET    /api/orders/:id  → 주문 상세
- * PUT    /api/orders/:id  → 주문 수정
- * DELETE /api/orders/:id  → 주문 삭제
+ * POST /api/orders 흐름 (결제 검증이 핵심):
+ *  1) 장바구니 조회
+ *  2) 포트원에서 실제 결제 금액·상태 확인 (클라이언트 금액만 믿지 않음)
+ *  3) 주문 저장 + 재고 차감 + 장바구니 비우기
+ *
+ * GET scope=mine 기본, admin만 scope=all
  */
 
 const ORDER_STATUSES = [

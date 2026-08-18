@@ -1,8 +1,13 @@
+/**
+ * 서버 진입점 (Spring의 main / SpringApplication.run 에 해당)
+ *
+ * 순서: .env 로드 → MongoDB 연결 → Express 앱 생성 → 포트 listen
+ * 배포(Cloudtype)는 npm start → 이 파일을 실행한다.
+ */
 const path = require('path');
 
-// server/.env 를 로드해서 process.env에 PORT, MONGODB_ATLAS_URL 등을 넣는다
-// (__dirname 기준이라 cwd가 src여도 .env를 찾을 수 있음)
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });   // .env 파일 로드
+// application.properties 와 같음. __dirname 기준이라 cwd가 src여도 .env를 찾음
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 
 const createApp = require('./app');

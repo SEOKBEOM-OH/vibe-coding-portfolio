@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 
 /**
- * Product 스키마
- * - 필수: name, price, image, colors, category, stock, is_active, createdBy
- * - 권장: description, images, sizes, brand, sku, sale_price, tags
- * timestamps: true → createdAt, updatedAt 자동 생성/갱신
+ * Product 스키마 ≈ @Entity(Product)
+ * category는 배열(다중값). createdBy는 User FK(ObjectId)
  */
 const productSchema = new mongoose.Schema(
   {

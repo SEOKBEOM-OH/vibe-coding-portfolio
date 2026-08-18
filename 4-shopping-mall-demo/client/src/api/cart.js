@@ -1,8 +1,7 @@
 import { apiFetch } from './apiClient';
 
 /**
- * 장바구니 API (모두 JWT 필요)
- * GET/POST/PUT/DELETE /api/cart…
+ * 장바구니 API (JWT 필수) — CartContext가 주로 호출
  */
 
 /** GET /api/cart */

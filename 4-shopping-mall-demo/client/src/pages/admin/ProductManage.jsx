@@ -122,10 +122,15 @@ function ProductManage() {
             </Link>
             <h1>상품 관리</h1>
           </div>
-          <Link to="/admin/products/new" className="product-manage__create-btn">
-            <PlusIcon size={16} />
-            새 상품 등록
-          </Link>
+          <div className="product-manage__header-actions">
+            <Link to="/admin/products/bulk" className="product-manage__bulk-btn">
+              대량 등록
+            </Link>
+            <Link to="/admin/products/new" className="product-manage__create-btn">
+              <PlusIcon size={16} />
+              새 상품 등록
+            </Link>
+          </div>
         </div>
 
         <div className="product-manage__tabs" role="tablist">
@@ -145,6 +150,14 @@ function ProductManage() {
             }
           >
             상품 등록
+          </NavLink>
+          <NavLink
+            to="/admin/products/bulk"
+            className={({ isActive }) =>
+              `product-manage__tab${isActive ? ' is-active' : ''}`
+            }
+          >
+            대량 등록
           </NavLink>
         </div>
 

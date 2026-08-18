@@ -1,7 +1,7 @@
 /**
- * 전역 에러 핸들러
- * 라우트/미들웨어에서 next(err) 또는 async 에러가 나면 여기로 온다.
- * 클라이언트에는 항상 { success, message } 형태로 응답한다.
+ * 전역 에러 핸들러 (@ControllerAdvice / ExceptionHandler 에 해당)
+ * next(err) 또는 throw 된 에러가 여기로 모임.
+ * 응답 형식은 항상 { success, message }
  */
 const errorHandler = (err, req, res, next) => {
   console.error(err.stack);

@@ -51,6 +51,30 @@
   letter-spacing: -0.02em;
 }
 
+.product-manage__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-manage__bulk-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--cos-border);
+  border-radius: var(--cos-radius-sm);
+  background: var(--cos-bg);
+  color: var(--cos-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.product-manage__bulk-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
 .product-manage__create-btn {
   display: inline-flex;
   align-items: center;
@@ -73,7 +97,7 @@
 /* ----- 탭 ----- */
 .product-manage__tabs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0;
   margin-bottom: 18px;
   border: 1px solid var(--cos-border);

@@ -1,20 +1,7 @@
 /**
- * ============================================================
- * 인증 정보 저장소 헬퍼 (authStorage)
- * ============================================================
- *
- * [왜 필요한가?]
- * 로그인 성공 시 서버가 JWT(token)를 내려준다.
- * 새로고침 해도 로그인 상태를 유지하려면 브라우저에 저장해야 한다.
- *
- * [어디에 저장하나?]
- * - localStorage  : 탭을 닫아도 유지 (로그인 상태 유지 ON)
- * - sessionStorage: 탭을 닫으면 삭제 (로그인 상태 유지 OFF)
- *
- * [전체 인증 흐름에서의 위치]
- *  Login 성공 → saveAuth()로 저장
- *  API 요청   → getToken()으로 꺼내 Authorization 헤더에 첨부
- *  로그아웃   → clearAuth()로 삭제
+ * JWT 브라우저 저장 (쿠키 세션 대신)
+ * remember ON → localStorage, OFF → sessionStorage
+ * apiClient.getToken() 이 여기서 토큰을 읽는다
  */
 
 /** 저장된 JWT 토큰 읽기 (local → session 순서로 찾음) */

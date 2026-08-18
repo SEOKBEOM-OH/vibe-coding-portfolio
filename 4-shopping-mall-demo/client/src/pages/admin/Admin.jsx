@@ -130,6 +130,10 @@ function Admin() {
                 <PlusIcon size={18} />
                 새 상품 등록
               </Link>
+              <Link to="/admin/products/bulk" className="admin-action">
+                <PlusIcon size={18} />
+                대량 등록
+              </Link>
               <Link to="/admin/orders" className="admin-action">
                 <EyeIcon size={18} />
                 주문 관리

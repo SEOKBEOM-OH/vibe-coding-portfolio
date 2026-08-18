@@ -1,13 +1,7 @@
 /**
- * 포트원(아임포트) REST API 유틸
- * - Access Token 발급
- * - 결제 단건 조회·검증
- *
- * 콘솔: 결제 연동 → 연동 정보 → 식별코드·API Keys
+ * 포트원 REST 유틸 (PG 승인 조회)
+ * 브라우저 결제창 성공만 믿지 않고, 서버가 포트원에 다시 물어본다.
  * .env: PORTONE_API_KEY, PORTONE_API_SECRET
- *
- * 참고: 일부 계정/환경에서 GET /payments/{imp_uid} 가 404를 반환하므로
- *       GET /payments/find/{merchant_uid} 로 조회합니다.
  */
 
 const PORTONE_API_BASE = 'https://api.iamport.kr';

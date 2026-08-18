@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 /**
- * User 스키마
- * timestamps: true → createdAt, updatedAt 자동 생성/갱신
- * password는 저장 전 bcrypt로 해시됨 (평문 저장 방지)
+ * User 스키마 ≈ @Entity(User)
+ * timestamps → @CreatedDate / @LastModifiedDate
+ * pre('save')에서 bcrypt 해시 (PasswordEncoder)
  */
 const userSchema = new mongoose.Schema(
   {

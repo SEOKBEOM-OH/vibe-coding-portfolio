@@ -7,8 +7,8 @@ const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
 
 /**
- * Order 라우트 — JWT 로그인 필요
- * 모든 라우트: authenticateToken (Bearer JWT 필수)
+ * Order 라우트 — @RequestMapping("/api/orders")
+ * 전부 JWT 필수. 생성 시 포트원 결제 검증은 컨트롤러에서 수행
  */
 router.post('/', authenticateToken, orderController.createOrder);
 router.get('/', authenticateToken, orderController.getOrders);

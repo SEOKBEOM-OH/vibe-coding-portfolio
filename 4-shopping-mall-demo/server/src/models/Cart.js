@@ -39,10 +39,8 @@ const cartItemSchema = new mongoose.Schema(
 );
 
 /**
- * Cart 스키마
- * - user당 장바구니 1개 (unique)
- * - items: 담은 상품 목록
- * timestamps: true → createdAt, updatedAt
+ * Cart 스키마 ≈ @Entity(Cart) + @OneToMany items
+ * user당 1개(unique). totalQuantity/totalAmount 는 DB에 안 넣고 virtual(계산필드)
  */
 const cartSchema = new mongoose.Schema(
   {

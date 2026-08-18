@@ -9,9 +9,9 @@ const {
 const router = express.Router();
 
 /**
- * User 라우트
- * 공개: POST /login, POST /
- * 보호: authenticateToken (Bearer JWT 필수)
+ * User 라우트 — @RequestMapping("/api/users")
+ * 공개: POST /login, POST / (회원가입)
+ * 보호: authenticateToken = 로그인 필터, authorize = 권한 체크
  */
 router.post('/login', userController.loginUser);
 router.post('/', userController.createUser);

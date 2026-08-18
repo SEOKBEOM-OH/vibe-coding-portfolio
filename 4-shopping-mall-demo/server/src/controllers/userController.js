@@ -2,16 +2,11 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 /**
- * ============================================================
- * User 컨트롤러 — 회원가입 / 로그인 / 내 정보
- * ============================================================
+ * User 컨트롤러 ≈ UserController + AuthService
  *
- * [프론트와의 인증 흐름]
- *  Register → POST /api/users
- *  Login    → POST /api/users/login  → { token, data }
- *             프론트가 token을 저장한 뒤
- *  이후 API → Authorization: Bearer <token>
- *  복원     → GET /api/users/me (authenticateToken 통과 후 req.user 반환)
+ * 회원가입 POST /api/users
+ * 로그인   POST /api/users/login → JWT 발급 (세션 대신 토큰)
+ * 내정보   GET  /api/users/me   → authenticateToken 후 req.user
  */
 
 /**

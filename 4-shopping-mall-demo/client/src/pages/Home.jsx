@@ -69,6 +69,7 @@ function Home() {
 
   return (
     <ShopLayout mainClassName="home-landing">
+      
       <section className="landing-hero">
         <h1>{LANDING_HERO_TITLE}</h1>
         <p>{LANDING_HERO_SUB}</p>
@@ -100,11 +101,7 @@ function Home() {
           <p className="landing-trending__status">등록된 상품이 없습니다.</p>
         )}
         {!loading && products.length > 0 && (
-          <ProductGrid
-            products={products}
-            wishlist={wishlist}
-            onToggleWish={toggleWishlist}
-          />
+          <ProductGrid products={products} wishlist={wishlist} onToggleWish={toggleWishlist} />
         )}
 
         <div className="landing-trending__more">
@@ -121,18 +118,12 @@ function Home() {
         <h2>{LANDING_NEWSLETTER_TITLE}</h2>
         <p>{LANDING_NEWSLETTER_SUB}</p>
         <form className="landing-newsletter__form" onSubmit={handleSubscribe}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            aria-label="이메일"
-          />
+          <input type="email" name="email" placeholder="Enter your email" value={email}
+                  onChange={(e) => setEmail(e.target.value)} required aria-label="이메일"/>
           <button type="submit">구독</button>
         </form>
       </section>
+
     </ShopLayout>
   );
 }

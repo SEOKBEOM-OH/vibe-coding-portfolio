@@ -5,20 +5,11 @@ import { getToken } from '../utils/authStorage';
 const API_URL = import.meta.env.VITE_API_URL || '';
 
 /**
- * ============================================================
- * apiClient.js — 백엔드 API 공통 호출
- * ============================================================
+ * API 공통 호출 (RestTemplate / axios 한곳)
  *
- * [인증과의 연결]
- * 1) authStorage.getToken() 으로 JWT를 꺼낸다
- * 2) 토큰이 있으면 헤더에 넣는다:
- *      Authorization: Bearer <token>
- * 3) 서버의 authenticateToken 미들웨어가 이 헤더를 보고 "누구의 요청인지" 판별한다
- *
- * [사용 예]
- *  - 로그인:   apiFetch('/api/users/login', { method: 'POST', body: ... })
- *  - 내 정보:  apiFetch('/api/users/me')  ← 토큰 필요
- *  - 회원가입: apiFetch('/api/users', { method: 'POST', body: ... })
+ * 1) localStorage 의 JWT 를 Authorization 헤더에 붙임
+ * 2) VITE_API_URL + path 로 fetch
+ * 3) 4xx/5xx 면 throw → 화면 catch 에서 에러 표시
  */
 export async function apiFetch(path, options = {}) {
   const { headers, ...rest } = options;

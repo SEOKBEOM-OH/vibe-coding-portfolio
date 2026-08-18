@@ -7,9 +7,11 @@ import { PROMO_TEXT, SITE_NAME } from '../constants/site';
 import { BagIcon, HeartIcon, SearchIcon, UserPlusIcon } from './Icons';
 import './Header.css';
 
+/**
+ * 공통 헤더 (레이아웃 tileset)
+ * 로그인/장바구니 수량은 Context에서 읽음 — 페이지마다 따로 API 안 침
+ */
 function Header() {
-  // AuthContext에서 로그인 유저 / 관리자 여부 / 로그아웃 함수를 가져옴
-  // → Home, Register, Admin 어디서든 <Header />만 넣으면 같은 로그인 UI가 보임
   const { user, isAdmin, logout } = useAuth();
   const { itemCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);

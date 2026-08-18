@@ -1,14 +1,8 @@
 import { apiFetch } from './apiClient';
 
 /**
- * 상품 API
- *
- * 등록 흐름:
- *   client → POST /api/products
- *   → app.js (productRoutes)
- *   → routes/product.js (authenticateToken + authorize)
- *   → controllers/productController.createProduct
- *   → models/Product.js → MongoDB 저장
+ * 상품 API 래퍼 (페이지는 이 함수만 호출)
+ * 실제 HTTP는 apiClient.js → Express /api/products
  */
 
 /** POST /api/products — 상품 등록 (admin / seller, JWT 필수) */
@@ -16,6 +10,14 @@ export function createProduct(payload) {
   return apiFetch('/api/products', {
     method: 'POST',
     body: JSON.stringify(payload),
+  });
+}
+
+/** POST /api/products/bulk — 여러 상품 한 번에 등록 */
+export function createProductsBulk(products) {
+  return apiFetch('/api/products/bulk', {
+    method: 'POST',
+    body: JSON.stringify({ products }),
   });
 }
 

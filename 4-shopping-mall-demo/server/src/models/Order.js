@@ -38,9 +38,9 @@ const orderItemSchema = new mongoose.Schema(
 );
 
 /**
- * Order 스키마
- * - 장바구니와 달리 금액·상품명은 저장 필드 (주문 후 변경 방지)
- * timestamps: true → createdAt, updatedAt
+ * Order 스키마 ≈ @Entity(Order)
+ * 장바구니와 달리 금액·상품명을 스냅샷으로 저장 (주문 후 상품 수정에 안 흔들림)
+ * impUid / merchantUid = 포트원 결제 키 (중복 주문 방지)
  */
 const orderSchema = new mongoose.Schema(
   {

@@ -1,12 +1,6 @@
 /**
- * Cloudinary Upload Widget 헬퍼
- *
- * 필요 env (client/.env):
- *   VITE_CLOUDINARY_CLOUD_NAME=your_cloud_name
- *   VITE_CLOUDINARY_UPLOAD_PRESET=your_unsigned_preset
- *
- * Cloudinary Console → Settings → Upload → Upload presets
- * 에서 Signing Mode = Unsigned 인 preset을 만들고 이름을 넣는다.
+ * Cloudinary 이미지 업로드 (파일 서버 대신 CDN)
+ * ProductCreate에서 위젯을 연다. env: VITE_CLOUDINARY_*
  */
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
@@ -44,7 +38,12 @@ function waitForCloudinary(timeoutMs = 10000) {
  * Upload Widget 열기
  * @param {{ onSuccess?: (info: object) => void, onError?: (error: unknown) => void }} options
  */
-export async function openCloudinaryUploadWidget({ onSuccess, onError } = {}) {
+export async function openCloudinaryUploadWidget({
+  onSuccess,
+  onError,
+  multiple = false,
+  maxFiles = 1,
+} = {}) {
   if (!isCloudinaryConfigured()) {
     throw new Error(
       'Cloudinary 설정이 없습니다.\nclient/.env 에 VITE_CLOUDINARY_CLOUD_NAME, VITE_CLOUDINARY_UPLOAD_PRESET 를 추가한 뒤 개발 서버를 재시작하세요.'
@@ -58,8 +57,8 @@ export async function openCloudinaryUploadWidget({ onSuccess, onError } = {}) {
       cloudName: CLOUD_NAME,
       uploadPreset: UPLOAD_PRESET,
       sources: ['local', 'url', 'camera'],
-      multiple: false,
-      maxFiles: 1,
+      multiple,
+      maxFiles: multiple ? maxFiles : 1,
       resourceType: 'image',
       clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
       cropping: false,

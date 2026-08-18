@@ -2,22 +2,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 /**
- * ============================================================
- * 서버 인증 미들웨어 (auth.js)
- * ============================================================
+ * 인증 미들웨어 ≈ Spring Security Filter + @PreAuthorize
  *
- * [클라이언트와의 연결]
- * 프론트 apiFetch가 보내는 헤더:
- *   Authorization: Bearer <JWT>
- *
- * 이 미들웨어가 헤더를 열어 보고
- *   1) 토큰 서명/만료 검증 (jwt.verify)
- *   2) payload의 id로 DB 유저 조회
- *   3) req.user에 유저를 넣어 다음 컨트롤러로 넘김
- *
- * [라우트에서 쓰는 예]
- *   router.get('/me', authenticateToken, getMe);
- *   router.get('/', authenticateToken, authorize('admin'), getUsers);
+ * 프론트가 Authorization: Bearer <JWT> 를 보냄
+ *  1) jwt.verify 로 서명/만료 확인
+ *  2) payload.id 로 User 조회
+ *  3) req.user 에 넣고 next() → 컨트롤러에서 사용 (SecurityContext 와 비슷)
  */
 
 /**

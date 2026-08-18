@@ -1,0 +1,114 @@
+.product-bulk {
+  max-width: 1100px;
+}
+
+.product-bulk__lead {
+  margin: -8px 0 20px;
+  color: var(--cos-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.product-bulk__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.product-bulk__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--cos-border);
+  border-radius: var(--cos-radius-sm);
+  background: var(--cos-bg);
+  color: var(--cos-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.product-bulk__add:hover:not(:disabled) {
+  background: var(--cos-bg-muted);
+}
+
+.product-bulk__add:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.product-bulk__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-bulk__card {
+  border: 1px solid var(--cos-border);
+  border-radius: var(--cos-radius-md);
+  padding: 16px;
+  background: var(--cos-bg);
+}
+
+.product-bulk__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.product-bulk__card-body {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.product-bulk__thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-bulk__thumb img,
+.product-bulk__thumb span {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--cos-radius-sm);
+  border: 1px solid var(--cos-border);
+  background: var(--cos-bg-muted);
+}
+
+.product-bulk__thumb span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--cos-muted);
+}
+
+.product-bulk__thumb button {
+  height: 32px;
+  border: 1px solid var(--cos-border);
+  border-radius: var(--cos-radius-sm);
+  background: var(--cos-bg);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.product-bulk__actions {
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 800px) {
+  .product-bulk__card-body {
+    grid-template-columns: 1fr;
+  }
+}

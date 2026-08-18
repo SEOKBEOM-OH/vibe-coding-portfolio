@@ -70,10 +70,13 @@ function NaverIcon() {
   );
 }
 
+/**
+ * 로그인 페이지
+ * POST /api/users/login → token 저장 → AuthContext.login()
+ * 이미 로그인이면 GuestRoute가 / 로 보냄
+ */
 function Login() {
   const navigate = useNavigate();
-  // 로그인 성공 후 전역 상태에 토큰/유저 저장
-  // (이미 로그인된 경우의 리다이렉트는 App.jsx 의 GuestRoute 가 담당)
   const { login } = useAuth();
 
   const [form, setForm] = useState({

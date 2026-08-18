@@ -1,8 +1,9 @@
 import { apiFetch } from './apiClient';
 
 /**
- * 주문 API (모두 JWT 필요)
- * POST/GET/PUT/DELETE /api/orders…
+ * 주문 API (JWT 필수)
+ * createOrder: 결제 성공 후 impUid/merchantUid 포함해서 POST
+ * getOrders: 고객은 scope=mine, 관리자는 scope=all
  */
 
 /** POST /api/orders — 장바구니 기반 주문 생성 */

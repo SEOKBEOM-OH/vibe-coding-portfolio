@@ -1,10 +1,8 @@
 const Product = require('../models/Product');
 
 /**
- * Product 컨트롤러 — CRUD
- *
- * 공개: GET /api/products, GET /api/products/:id
- * 보호: POST/PUT/DELETE (admin, seller)
+ * Product 컨트롤러 ≈ @RestController + Service
+ * 공개 GET, 쓰기는 admin/seller. Mongo 조회는 Product.find() (JpaRepository.findAll)
  */
 
 const PRODUCT_FIELDS = [
@@ -187,6 +185,122 @@ const createProduct = async (req, res, next) => {
   }
 };
 
+const MAX_BULK_PRODUCTS = 50;
+
+/**
+ * POST /api/products/bulk — 여러 상품 한 번에 등록
+ * body: { products: [{ sku, name, price, image, category, ... }] }
+ */
+const createProductsBulk = async (req, res, next) => {
+  try {
+    const items = req.body.products;
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'products 배열이 필요합니다.',
+      });
+    }
+
+    if (items.length > MAX_BULK_PRODUCTS) {
+      return res.status(400).json({
+        success: false,
+        message: `한 번에 최대 ${MAX_BULK_PRODUCTS}개까지 등록할 수 있습니다.`,
+      });
+    }
+
+    const prepared = [];
+    const skuSet = new Set();
+
+    for (let i = 0; i < items.length; i++) {
+      const data = pickProductFields(items[i] || {});
+      const row = i + 1;
+
+      if (
+        !data.sku ||
+        !data.name ||
+        data.price === undefined ||
+        data.price === null ||
+        !data.image ||
+        !data.category ||
+        !data.category.length
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: `${row}번째 상품: sku, name, price, image, category는 필수입니다.`,
+        });
+      }
+
+      const price = Number(data.price);
+      if (Number.isNaN(price) || price < 0) {
+        return res.status(400).json({
+          success: false,
+          message: `${row}번째 상품: price는 0 이상의 숫자여야 합니다.`,
+        });
+      }
+      data.price = price;
+
+      if (data.stock === undefined || data.stock === null) {
+        data.stock = 0;
+      } else {
+        data.stock = Number(data.stock);
+        if (Number.isNaN(data.stock) || data.stock < 0) {
+          return res.status(400).json({
+            success: false,
+            message: `${row}번째 상품: stock은 0 이상의 숫자여야 합니다.`,
+          });
+        }
+      }
+
+      data.sku = String(data.sku).trim().toUpperCase();
+      if (!data.sku) {
+        return res.status(400).json({
+          success: false,
+          message: `${row}번째 상품: sku는 필수입니다.`,
+        });
+      }
+
+      if (skuSet.has(data.sku)) {
+        return res.status(400).json({
+          success: false,
+          message: `SKU가 중복되었습니다: ${data.sku}`,
+        });
+      }
+      skuSet.add(data.sku);
+
+      prepared.push({
+        ...data,
+        createdBy: req.user._id,
+      });
+    }
+
+    const existing = await Product.find({ sku: { $in: [...skuSet] } }).select(
+      'sku'
+    );
+    if (existing.length) {
+      const dup = existing.map((p) => p.sku).join(', ');
+      return res.status(409).json({
+        success: false,
+        message: `이미 사용 중인 SKU입니다: ${dup}`,
+      });
+    }
+
+    const docs = await Product.insertMany(prepared);
+    const populated = await Product.find({
+      _id: { $in: docs.map((d) => d._id) },
+    }).populate('createdBy', 'name email user_type');
+
+    res.status(201).json({
+      success: true,
+      message: `${populated.length}개 상품이 등록되었습니다.`,
+      count: populated.length,
+      data: populated,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // PUT /api/products/:id — 수정 (admin / seller)
 const updateProduct = async (req, res, next) => {
   try {
@@ -237,6 +351,7 @@ module.exports = {
   getProducts,
   getProductById,
   createProduct,
+  createProductsBulk,
   updateProduct,
   deleteProduct,
 };

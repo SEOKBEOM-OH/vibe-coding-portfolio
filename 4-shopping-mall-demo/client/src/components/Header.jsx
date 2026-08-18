@@ -97,6 +97,14 @@ function Header() {
                     >
                       내 주문 목록
                     </Link>
+                    <Link
+                      to="/account/password"
+                      className="site-header__dropdown-item"
+                      role="menuitem"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      비밀번호 변경
+                    </Link>
                     <button
                       type="button"
                       className="site-header__dropdown-item"

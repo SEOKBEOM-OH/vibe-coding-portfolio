@@ -20,6 +20,7 @@ import AdminOrderDetail from './pages/admin/AdminOrderDetail';
 import ProductManage from './pages/admin/ProductManage';
 import ProductCreate from './pages/admin/ProductCreate';
 import ProductBulkCreate from './pages/admin/ProductBulkCreate';
+import ChangePassword from './pages/ChangePassword';
 
 /**
  * 앱 루트 — URL 라우팅 (web.xml / @GetMapping 화면 버전)
@@ -45,6 +46,7 @@ function App() {
             <Route path="/checkout/complete/:id" element={<ProtectedRoute><OrderComplete /></ProtectedRoute>} />
             <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
             <Route path="/orders/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
+            <Route path="/account/password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
 
             <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
             <Route path="/register" element={<GuestRoute><Register /></GuestRoute>} />

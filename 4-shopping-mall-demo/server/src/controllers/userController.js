@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { isValidPassword, PASSWORD_HINT } = require('../utils/password');
 
 /**
  * User 컨트롤러 ≈ UserController + AuthService
@@ -92,6 +93,63 @@ const loginUser = async (req, res, next) => {
 };
 
 /**
+ * PUT /api/users/me/password — 비밀번호 변경
+ * 현재 비밀번호 확인 후 새 비밀번호 저장 (bcrypt는 User pre('save'))
+ */
+const changePassword = async (req, res, next) => {
+  try {
+    const currentPassword = req.body.currentPassword;
+    const newPassword = req.body.newPassword;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: '현재 비밀번호와 새 비밀번호를 입력해 주세요.',
+      });
+    }
+
+    if (!isValidPassword(newPassword)) {
+      return res.status(400).json({
+        success: false,
+        message: PASSWORD_HINT,
+      });
+    }
+
+    if (currentPassword === newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: '새 비밀번호는 현재 비밀번호와 달라야 합니다.',
+      });
+    }
+
+    const user = await User.findById(req.user._id).select('+password');
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: '사용자를 찾을 수 없습니다.',
+      });
+    }
+
+    if (!(await user.comparePassword(currentPassword))) {
+      return res.status(401).json({
+        success: false,
+        message: '현재 비밀번호가 올바르지 않습니다.',
+      });
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: '비밀번호가 변경되었습니다.',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * GET /api/users/me — 현재 로그인 유저
  * 라우트: router.get('/me', authenticateToken, getMe)
  */
@@ -167,6 +225,7 @@ const deleteUser = async (req, res, next) => {
 module.exports = {
   createUser,
   loginUser,
+  changePassword,
   getMe,
   getUsers,
   getUserById,

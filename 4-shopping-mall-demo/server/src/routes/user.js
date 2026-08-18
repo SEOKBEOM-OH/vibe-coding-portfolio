@@ -17,6 +17,7 @@ router.post('/login', userController.loginUser);
 router.post('/', userController.createUser);
 
 router.get('/me', authenticateToken, userController.getMe);
+router.put('/me/password', authenticateToken, userController.changePassword);
 router.get('/', authenticateToken, authorize('admin'), userController.getUsers);
 router.get('/:id', authenticateToken, authorizeSelfOrAdmin, userController.getUserById);
 router.put('/:id', authenticateToken, authorizeSelfOrAdmin, userController.updateUser);

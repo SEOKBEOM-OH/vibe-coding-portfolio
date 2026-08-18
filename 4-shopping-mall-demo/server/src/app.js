@@ -19,10 +19,27 @@ const errorHandler = require('./middleware/errorHandler');
 const createApp = () => {
   const app = express();
 
-  // React(localhost:3000) → Express(localhost:5000) 크로스 오리진 허용
+  // CORS: 프론트 주소가 API와 다를 때 브라우저가 요청을 허용할지 결정
+  // CLIENT_URL(운영 Vercel) + 로컬 + Vercel Preview URL 허용
+  // Preview는 Redeploy 때마다 호스트가 바뀜 (예: shopping-mall-client-xxxxx.vercel.app)
+  const allowedOrigins = [
+    process.env.CLIENT_URL,
+    'http://localhost:3000',
+    'https://shopping-mall-client-eight.vercel.app',
+  ].filter(Boolean);
+
+  const isVercelPreview = (origin) =>
+    /^https:\/\/shopping-mall-client[a-z0-9-]*\.vercel\.app$/.test(origin);
+
   app.use(
     cors({
-      origin: process.env.CLIENT_URL || 'http://localhost:3000',
+      origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin) || isVercelPreview(origin)) {
+          callback(null, true);
+          return;
+        }
+        callback(new Error(`Not allowed by CORS: ${origin}`));
+      },
     })
   );
 

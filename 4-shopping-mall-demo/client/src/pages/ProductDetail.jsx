@@ -17,6 +17,7 @@ import {
 import {
   formatProductPrice,
   getProductId,
+  isSoldOut,
 } from '../utils/productDisplay';
 import './ProductDetail.css';
 
@@ -144,9 +145,9 @@ function ProductDetail() {
     ? Math.round((1 - product.sale_price / product.price) * 100)
     : 0;
 
-  // 등록 시 stock 0인 기존 상품도 담을 수 있도록 데모용 상한 적용
-  const maxQty = product?.stock > 0 ? product.stock : 10;
-  const canPurchase = maxQty > 0;
+  const soldOut = isSoldOut(product);
+  const maxQty = product && !soldOut ? product.stock : 0;
+  const canPurchase = Boolean(product) && !soldOut;
 
   const toggleWish = (productId) => {
     setWishlist((prev) => {
@@ -214,11 +215,12 @@ function ProductDetail() {
       <div className="product-detail">
         <div className="product-detail__top">
           <div className="product-detail__gallery">
-            <div className="product-detail__main-image">
+            <div className={`product-detail__main-image${soldOut ? ' is-sold-out' : ''}`}>
               <img
                 src={gallery[activeImage] || product.image}
                 alt={product.name}
               />
+              {soldOut && <span className="product-detail__soldout">품절</span>}
             </div>
             {gallery.length > 1 && (
               <div className="product-detail__thumbs">
@@ -238,6 +240,11 @@ function ProductDetail() {
 
           <div className="product-detail__info">
             <div className="product-detail__badges">
+              {soldOut && (
+                <span className="product-detail__badge product-detail__badge--soldout">
+                  품절
+                </span>
+              )}
               {isNewProduct(product) && (
                 <span className="product-detail__badge product-detail__badge--new">
                   NEW
@@ -332,10 +339,10 @@ function ProductDetail() {
                     +
                   </button>
                 </div>
-                <span className="product-detail__stock">
-                  {product.stock > 0
-                    ? `Only ${product.stock} left in stock`
-                    : `Up to ${maxQty} available`}
+                <span className={`product-detail__stock${soldOut ? ' is-sold-out' : ''}`}>
+                  {soldOut
+                    ? '품절'
+                    : `Only ${product.stock} left in stock`}
                 </span>
               </div>
             </div>
@@ -347,7 +354,7 @@ function ProductDetail() {
               disabled={!canPurchase}
             >
               <BagIcon size={18} />
-              장바구니 담기 — {formatProductPrice((unitPrice || 0) * quantity)}
+              {soldOut ? '품절' : `장바구니 담기 — ${formatProductPrice((unitPrice || 0) * quantity)}`}
             </button>
 
             {bagMessage && (

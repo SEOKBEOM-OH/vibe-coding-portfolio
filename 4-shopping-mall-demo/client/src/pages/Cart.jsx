@@ -132,8 +132,9 @@ function Cart() {
               <ul className="cart-page__list">
                 {items.map((item) => {
                   const isSaved = saved.has(item._id);
+                  const soldOut = Number(item.stock) <= 0;
                   return (
-                    <li key={item._id} className="cart-card">
+                    <li key={item._id} className={`cart-card${soldOut ? ' is-sold-out' : ''}`}>
                       <button
                         type="button"
                         className="cart-card__trash"
@@ -190,6 +191,7 @@ function Cart() {
                               <button
                                 type="button"
                                 aria-label="증가"
+                                disabled={soldOut}
                                 onClick={() =>
                                   handleQty(item._id, item.quantity + 1)
                                 }
@@ -197,9 +199,9 @@ function Cart() {
                                 +
                               </button>
                             </div>
-                            <span className="cart-card__stock">
+                            <span className={`cart-card__stock${soldOut ? ' is-sold-out' : ''}`}>
                               <span className="cart-card__stock-dot" />
-                              재고 있음
+                              {soldOut ? '품절' : '재고 있음'}
                             </span>
                           </div>
 

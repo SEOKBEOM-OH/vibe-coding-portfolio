@@ -121,6 +121,10 @@
   display: block;
 }
 
+.cart-card.is-sold-out .cart-card__thumb img {
+  filter: brightness(0.42);
+}
+
 .cart-card__thumb-empty {
   display: block;
   width: 100%;
@@ -193,6 +197,11 @@
   color: var(--cos-text);
 }
 
+.cart-card__qty button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .cart-card__qty span {
   min-width: 28px;
   text-align: center;
@@ -214,6 +223,14 @@
   height: 7px;
   border-radius: 50%;
   background: #1f9d57;
+}
+
+.cart-card__stock.is-sold-out {
+  color: #c62828;
+}
+
+.cart-card__stock.is-sold-out .cart-card__stock-dot {
+  background: #c62828;
 }
 
 .cart-card__save {

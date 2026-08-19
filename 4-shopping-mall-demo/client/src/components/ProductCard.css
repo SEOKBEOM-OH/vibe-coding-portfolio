@@ -44,6 +44,27 @@
   transform: scale(1.035);
 }
 
+.product.is-sold-out .product__image {
+  filter: brightness(0.42);
+}
+
+.product.is-sold-out:hover .product__image {
+  transform: none;
+}
+
+.product__soldout {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 5px 10px;
+  background: rgba(17, 17, 17, 0.82);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
 .product__wish {
   position: absolute;
   right: 12px;

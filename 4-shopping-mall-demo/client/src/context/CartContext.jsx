@@ -34,6 +34,7 @@ function mapCartItems(cart) {
     quantity: item.quantity,
     size: item.size || '',
     color: item.color || '',
+    stock: item.product?.stock,
   }));
 }
 

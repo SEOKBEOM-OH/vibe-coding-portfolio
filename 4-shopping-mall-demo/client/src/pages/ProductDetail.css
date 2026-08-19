@@ -38,6 +38,7 @@
 }
 
 .product-detail__main-image {
+  position: relative;
   aspect-ratio: 1;
   background: var(--cos-surface);
   border: 1px solid var(--cos-border);
@@ -49,6 +50,22 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.product-detail__main-image.is-sold-out img {
+  filter: brightness(0.42);
+}
+
+.product-detail__soldout {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  background: rgba(17, 17, 17, 0.82);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 .product-detail__thumbs {
@@ -103,6 +120,11 @@
 .product-detail__badge--sale {
   background: #fdecea;
   color: #c62828;
+}
+
+.product-detail__badge--soldout {
+  background: #111111;
+  color: #fff;
 }
 
 .product-detail__title {
@@ -257,6 +279,11 @@
 .product-detail__stock {
   font-size: 0.85rem;
   color: var(--cos-muted);
+}
+
+.product-detail__stock.is-sold-out {
+  color: #c62828;
+  font-weight: 600;
 }
 
 .product-detail__bag-msg {

@@ -3,6 +3,11 @@ export function getProductId(product) {
   return product?._id ?? product?.id;
 }
 
+/** 재고가 없거나 없으면 품절 */
+export function isSoldOut(product) {
+  return Number(product?.stock) <= 0;
+}
+
 /** 숫자 가격 → ₩ 포맷, 이미 문자열이면 그대로 */
 export function formatProductPrice(price) {
   if (price == null || price === '') return '';

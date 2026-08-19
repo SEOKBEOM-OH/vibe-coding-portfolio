@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HeartIcon } from './Icons';
-import { formatProductPrice, getProductId } from '../utils/productDisplay';
+import { formatProductPrice, getProductId, isSoldOut } from '../utils/productDisplay';
 import './ProductCard.css';
 
 /**
@@ -14,6 +14,7 @@ function ProductCard({ product, liked, index = 0, onToggleWish }) {
     product.sale_price != null && product.sale_price < product.price
       ? formatProductPrice(product.sale_price)
       : formatProductPrice(product.price);
+  const soldOut = isSoldOut(product);
 
   const handleWish = (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ function ProductCard({ product, liked, index = 0, onToggleWish }) {
 
   return (
     <article
-      className="product"
+      className={`product${soldOut ? ' is-sold-out' : ''}`}
       style={{ animationDelay: `${Math.min(index, 11) * 40}ms` }}
     >
       <div className="product__media-wrap">
@@ -35,6 +36,7 @@ function ProductCard({ product, liked, index = 0, onToggleWish }) {
               loading="lazy"
               className="product__image"
             />
+            {soldOut && <span className="product__soldout">품절</span>}
           </div>
         </Link>
         <button

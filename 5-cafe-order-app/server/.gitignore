@@ -1,0 +1,25 @@
+# 비밀번호, DB 주소 등 비밀 값
+.env
+.env.*
+!.env.example
+
+# 의존성 (설치로 다시 만들 수 있음)
+node_modules/
+
+# 로그
+*.log
+npm-debug.log*
+
+# 인증서 / 키 파일
+*.pem
+*.key
+*.p12
+
+# OS / 에디터 로컬 파일
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo

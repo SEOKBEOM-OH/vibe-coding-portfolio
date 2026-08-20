@@ -28,18 +28,19 @@ export default function MenuCard({ item, onAddToCart }) {
   const displayPrice = item.price + extraPrice
   const isIce = item.name.includes('ICE')
   const isHot = item.name.includes('HOT')
+  const soldOut = item.stock === 0
 
   return (
     <article className="menu-card">
       <div className="menu-card__image">
-        <img
-          src={`https://images.unsplash.com/${item.imageId}?w=480&h=240&fit=crop&auto=format`}
-          alt={item.name}
-        />
+        <img src={item.image} alt={item.name} />
         {(isIce || isHot) && (
           <span className={`menu-card__badge menu-card__badge--${isIce ? 'ice' : 'hot'}`}>
             {isIce ? 'ICE' : 'HOT'}
           </span>
+        )}
+        {soldOut && (
+          <span className="menu-card__badge menu-card__badge--soldout">품절</span>
         )}
       </div>
 
@@ -79,6 +80,7 @@ export default function MenuCard({ item, onAddToCart }) {
                     type="checkbox"
                     className="sr-only"
                     checked={checked}
+                    disabled={soldOut}
                     onChange={() => toggleOption(option.id)}
                   />
                 </span>
@@ -94,8 +96,13 @@ export default function MenuCard({ item, onAddToCart }) {
           })}
         </div>
 
-        <button type="button" className="menu-card__add" onClick={handleAdd}>
-          담기
+        <button
+          type="button"
+          className="menu-card__add"
+          onClick={handleAdd}
+          disabled={soldOut}
+        >
+          {soldOut ? '품절' : '담기'}
         </button>
       </div>
     </article>

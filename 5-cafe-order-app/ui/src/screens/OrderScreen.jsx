@@ -61,10 +61,10 @@ export default function OrderScreen({
     setCart((prev) => prev.filter((_, itemIndex) => itemIndex !== index))
   }
 
-  function handleOrder() {
+  async function handleOrder() {
     if (cart.length === 0) return
-    onPlaceOrder()
-    setToast(true)
+    const ok = await onPlaceOrder()
+    if (ok) setToast(true)
   }
 
   const total = cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0)
@@ -105,7 +105,6 @@ export default function OrderScreen({
         <div className="page">
           <div className="cart__head">
             <h2 className="page__title">장바구니</h2>
-            {toast && <span className="cart__toast">주문이 접수되었습니다 ✓</span>}
           </div>
 
           <div className="cart__body">
@@ -178,6 +177,15 @@ export default function OrderScreen({
           </div>
         </div>
       </aside>
+
+      {toast && (
+        <div className="order-alert" role="status" aria-live="polite">
+          <div className="order-alert__card">
+            <p className="order-alert__title">주문이 접수되었습니다</p>
+            <p className="order-alert__desc">주문 현황은 관리자 화면에서 확인할 수 있습니다.</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

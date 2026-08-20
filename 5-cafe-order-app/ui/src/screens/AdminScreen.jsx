@@ -1,5 +1,5 @@
 import Header from '../components/Header'
-import { NEXT_STATUS, NEXT_STATUS_HINT, ORDER_STATUS, canCancelOrder } from '../constants/orderStatus'
+import { NEXT_STATUS, ORDER_STATUS, canCancelOrder } from '../constants/orderStatus'
 import { formatDate, formatPrice, optionLabel } from '../utils/format'
 
 function statusClassName(status) {
@@ -21,6 +21,7 @@ export default function AdminScreen({
   onUpdateStock,
   onAdvanceOrder,
   onCancelOrder,
+  onCancelOrderItem,
   onNavigateOrder,
 }) {
   const total = orders.length
@@ -47,6 +48,11 @@ export default function AdminScreen({
   function handleCancelClick(order) {
     const confirmed = window.confirm('이 주문을 취소할까요?')
     if (confirmed) onCancelOrder(order.id)
+  }
+
+  function handleCancelItemClick(order, item) {
+    const confirmed = window.confirm(`${item.menuName} 항목을 취소할까요?`)
+    if (confirmed) onCancelOrderItem(order.id, item.id)
   }
 
   return (
@@ -121,18 +127,31 @@ export default function AdminScreen({
                 {orders.map((order) => {
                   const canAdvance = Boolean(NEXT_STATUS[order.status])
                   const showCancel = canCancelOrder(order.status)
-                  const nextHint = NEXT_STATUS_HINT[order.status]
 
                   return (
                     <div key={order.id} className="order-row">
                       <div className="order-row__date">{formatDate(order.createdAt)}</div>
                       <div className="order-row__items">
                         {order.items.map((item, index) => (
-                          <span key={`${order.id}-${item.menuId}-${index}`}>
-                            {item.menuName}
-                            <span className="muted">{optionLabel(item.selectedOptions)}</span>
-                            {` X ${item.quantity}`}
-                          </span>
+                          <div
+                            key={item.id ?? `${order.id}-${item.menuId}-${index}`}
+                            className={`order-row__item${item.cancelled ? ' is-cancelled' : ''}`}
+                          >
+                            <span>
+                              {item.menuName}
+                              <span className="muted">{optionLabel(item.selectedOptions)}</span>
+                              {` X ${item.quantity}`}
+                            </span>
+                            {showCancel && !item.cancelled && (
+                              <button
+                                type="button"
+                                className="order-row__item-cancel"
+                                onClick={() => handleCancelItemClick(order, item)}
+                              >
+                                취소
+                              </button>
+                            )}
+                          </div>
                         ))}
                       </div>
                       <div className="order-row__price">{formatPrice(order.total)}</div>
@@ -145,7 +164,6 @@ export default function AdminScreen({
                         >
                           {order.status}
                         </button>
-                        {nextHint && <span className="order-row__hint">→ {nextHint}</span>}
                         {showCancel && (
                           <button
                             type="button"

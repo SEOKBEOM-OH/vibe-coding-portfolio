@@ -10,8 +10,8 @@ export const PROMO_TEXT = '3만원 이상 주문 시 무료 배송';
 export const HOME_COLLECTION_TITLE = '전체';
 
 /** 랜딩 히어로 */
-export const LANDING_HERO_TITLE = 'NEW ARRIVALS';
-export const LANDING_HERO_SUB = '최신 트렌드를 발견하고 당신만의 독창적인 스타일을 표현해 보세요.';
+export const LANDING_HERO_TITLE = 'NEW COLLECTION';
+export const LANDING_HERO_SUB = '유행을 넘어, 시간이 흘러도 변치 않을 가치를 만나보세요.';
 export const LANDING_HERO_CTA = '지금 쇼핑하기';
 
 /** 랜딩 Trending 섹션 */

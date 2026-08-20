@@ -33,7 +33,7 @@
 }
 
 .site-header__category {
-  font-size: 0.72rem;
+  font-size: 1.0rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -207,7 +207,7 @@
   }
 
   .site-header__welcome {
-    max-width: 120px;
+    max-width: 135px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

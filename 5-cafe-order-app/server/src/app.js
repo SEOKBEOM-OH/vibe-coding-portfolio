@@ -4,11 +4,38 @@ const { getPool } = require('./config/db')
 const menusRouter = require('./routes/menus')
 const ordersRouter = require('./routes/orders')
 
+function normalizeOrigin(url) {
+  return String(url || '').trim().replace(/\/$/, '')
+}
+
+function isAllowedOrigin(origin) {
+  if (!origin) return true
+
+  const normalized = normalizeOrigin(origin)
+  const allowed = (process.env.CLIENT_URL || 'http://localhost:5173')
+    .split(',')
+    .map(normalizeOrigin)
+    .filter(Boolean)
+
+  if (allowed.includes('*') || allowed.includes(normalized)) return true
+
+  try {
+    return new URL(normalized).hostname.endsWith('.onrender.com')
+  } catch {
+    return false
+  }
+}
+
 function createApp() {
   const app = express()
-  const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173'
 
-  app.use(cors({ origin: clientUrl }))
+  app.use(
+    cors({
+      origin(origin, callback) {
+        callback(null, isAllowedOrigin(origin))
+      },
+    }),
+  )
   app.use(express.json())
 
   app.get('/', async (req, res) => {

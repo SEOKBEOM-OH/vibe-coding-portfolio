@@ -7,7 +7,7 @@ const CONFIG = {
 };
 
 if (!CONFIG.API_KEY || CONFIG.API_KEY.includes("여기에_")) {
-  console.error(
-    "[CONFIG] API 키가 없습니다. js/secrets.example.js 를 복사해 js/secrets.js 를 만든 뒤 키를 넣어 주세요."
+  console.info(
+    "[CONFIG] 브라우저용 API 키가 없습니다. Vercel 환경 변수로 /api/now-playing 을 조회합니다."
   );
 }

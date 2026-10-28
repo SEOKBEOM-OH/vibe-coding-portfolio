@@ -24,7 +24,15 @@ const Auth = {
       email: email.trim(),
       loggedInAt: new Date().toISOString(),
     };
-    localStorage.setItem(CONFIG.AUTH_STORAGE_KEY, JSON.stringify(payload));
+
+    // file:// 로 열면 브라우저가 localStorage 를 막는 경우가 있다.
+    // 그때는 예외를 삼키지 않고 null 을 돌려, 화면에서 안내를 띄운다.
+    try {
+      localStorage.setItem(CONFIG.AUTH_STORAGE_KEY, JSON.stringify(payload));
+    } catch {
+      return null;
+    }
+
     return payload;
   },
 

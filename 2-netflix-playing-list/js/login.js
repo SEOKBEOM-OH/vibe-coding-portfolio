@@ -48,7 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    Auth.login(email);
+    const session = Auth.login(email);
+
+    // 저장에 실패하면 홈으로 보내도 바로 로그인 화면으로 돌아온다.
+    if (!session) {
+      showError(
+        "파일을 직접 열면 로그인 정보를 저장할 수 없습니다. 주소창에 http://localhost:5500 을 입력한 뒤 다시 로그인해 주세요."
+      );
+      return;
+    }
+
     window.location.href = "home.html";
   });
 

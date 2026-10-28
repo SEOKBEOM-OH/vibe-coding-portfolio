@@ -22,7 +22,10 @@ cd vibe-coding-portfolio
 
 원하는 프로젝트 폴더로 이동한 뒤 해당 `README.md`의 실행 방법을 따라 주세요.
 
-**eleFolio Live demo:** [vibe-coding-portfolio-rouge.vercel.app](https://vibe-coding-portfolio-rouge.vercel.app)
+**eleFolio 운영 사이트:** 
+[vibe-coding-portfolio-xi-two.vercel.app](https://vibe-coding-portfolio-xi-two.vercel.app/)
+
+여는 방법은 [1-html-css-js-demo/README.md](./1-html-css-js-demo/README.md)의 **실행 방법**에 적어 두었습니다.
 
 ## License
 
